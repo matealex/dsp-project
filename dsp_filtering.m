@@ -414,7 +414,6 @@ global F1
 global s1
 global maxA
 
-
 [t, s] = generateSineWave(A1, F1, Fs, durata, fi0);
 axes(handles.s1_axes);
 displayGraph(t, s, durata, 'Sinusoida s1', 1, maxA);
@@ -441,8 +440,9 @@ global maxA
 axes(handles.s2_axes);
 displayGraph(t, s, durata, 'Sinusoida s2', 1, maxA);
 xlabel('timp[s]');
-s2 = s;
 zoom on;
+s2 = s;
+
 
 % --- Executes on button press in btnGenerateS3.
 function btnGenerateS3_Callback(hObject, eventdata, handles)
@@ -450,7 +450,6 @@ function btnGenerateS3_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-global fi0
 global durata
 global Fs
 global A3
@@ -458,13 +457,13 @@ global F3
 global s3
 global maxA
 
-
 [t, s] = generateTriangleWave(A3, F3, Fs, durata);
 axes(handles.s3_axes);
 displayGraph(t, s, durata, 'Semnal triunghiular s3', 1, maxA);
 xlabel('timp[s]');
-s3 = s;
 zoom on;
+s3 = s;
+
 
 % --- Executes on button press in btnGenerateS4.
 function btnGenerateS4_Callback(hObject, eventdata, handles)
@@ -472,21 +471,20 @@ function btnGenerateS4_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-global fi0
 global durata
 global Fs
 global A4
 global F4
 global s4
-
 global maxA
 
 [t, s] = generateSquareWave(A4, F4, Fs, durata);
 axes(handles.s4_axes);
 displayGraph(t, s, durata, 'Semnal dreptunghiular s4', 1, maxA);
 xlabel('timp[s]');
-s4 = s;
 zoom on;
+s4 = s;
+
 
 % --- Executes on button press in btnGenerateS5.
 function btnGenerateS5_Callback(hObject, eventdata, handles)
@@ -494,19 +492,13 @@ function btnGenerateS5_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-global fi0
 global durata
 global Fs
-global A5
-global F5
-
 global s1
 global s2
 global s3
 global s4
-
 global maxA
-
 global Semnal_1
 
 Semnal_1 = s1 + s2 + s3 + s4;
