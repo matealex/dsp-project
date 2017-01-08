@@ -284,16 +284,9 @@ function edit_A1_Callback(hObject, eventdata, handles)
 % Hints: get(hObject,'String') returns contents of edit_A1 as text
 %        str2double(get(hObject,'String')) returns contents of edit_A1 as a double
 
-global maxA
-global minA
 global A1
 A1 = str2double(get(handles.edit_A1, 'String'));
-
-if (A1 > maxA) || (A1 < minA)
-    msgbox('Please add a value between 0 and 3.');
-else
-    UpdateUI(handles)
-end
+CompareToMinMax(A1,handles)
 
 
 % --- Executes during object creation, after setting all properties.
@@ -318,16 +311,9 @@ function edit_A2_Callback(hObject, eventdata, handles)
 % Hints: get(hObject,'String') returns contents of edit_A2 as text
 %        str2double(get(hObject,'String')) returns contents of edit_A2 as a double
 
-global maxA
-global minA
 global A2
 A2 = str2double(get(handles.edit_A2, 'String'));
-
-if (A2 > maxA) || (A2 < minA)
-    msgbox('Please add a value between 0 and 3.');
-else
-    UpdateUI(handles)
-end
+CompareToMinMax(A2,handles)
 
 % --- Executes during object creation, after setting all properties.
 function edit_A2_CreateFcn(hObject, eventdata, handles)
@@ -350,17 +336,9 @@ function edit_A3_Callback(hObject, eventdata, handles)
 
 % Hints: get(hObject,'String') returns contents of edit_A3 as text
 %        str2double(get(hObject,'String')) returns contents of edit_A3 as a double
-
-global maxA
-global minA
 global A3
 A3 = str2double(get(handles.edit_A3, 'String'));
-
-if (A3 > maxA) || (A3 < minA)
-    msgbox('Please add a value between 0 and 3.');
-else
-    UpdateUI(handles)
-end
+CompareToMinMax(A3,handles)
 
 % --- Executes during object creation, after setting all properties.
 function edit_A3_CreateFcn(hObject, eventdata, handles)
@@ -382,16 +360,9 @@ function edit_A4_Callback(hObject, eventdata, handles)
 % Hints: get(hObject,'String') returns contents of edit_A4 as text
 %        str2double(get(hObject,'String')) returns contents of edit_A4 as a double
 
-global maxA
-global minA
 global A4
 A4 = str2double(get(handles.edit_A4, 'String'));
-
-if (A4 > maxA) || (A4 < minA)
-    msgbox('Please add a value between 0 and 3.');
-else
-    UpdateUI(handles)
-end
+CompareToMinMax(A4,handles)
 
 % --- Executes during object creation, after setting all properties.
 function edit_A4_CreateFcn(hObject, eventdata, handles)
@@ -403,6 +374,16 @@ function edit_A4_CreateFcn(hObject, eventdata, handles)
 %       See ISPC and COMPUTER.
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
+end
+
+function CompareToMinMax(A,handles)
+global maxA
+global minA
+
+if (A > maxA) || (A < minA)
+    msgbox('Please add a value between 0 and 3.');
+else
+    UpdateUI(handles)
 end
 
 function GenerateS1(handles)
