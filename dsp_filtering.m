@@ -80,6 +80,30 @@ N = 100;
 global filterType
 filterType = 'FTJ';
 
+global A1
+global F1
+global s1
+A1=1;
+F1=100;
+
+global A2
+global F2
+global s2
+A2=1;
+F2=100;
+
+global A3
+global F3
+global s3
+A3=1;
+F3=100;
+
+global A4
+global F4
+global s4
+A4=1;
+F4=100;
+
 %SET DEFAULT VALUES IN GUI
 set(handles.edit_N,'string',N);
 
@@ -102,6 +126,15 @@ set(handles.edit_A4,'String',num2str(1));
 set(handles.edit_Ft1,'String',num2str(100));
 set(handles.edit_Ft2,'String',num2str(100));
 
+UpdateUI(handles)
+
+function UpdateUI(handles)
+
+btnGenerateS1_Callback([], [], handles)
+btnGenerateS2_Callback([], [], handles)
+btnGenerateS3_Callback([], [], handles)
+btnGenerateS4_Callback([], [], handles)
+btnGenerateS5_Callback([], [], handles)
 
 % --- Outputs from this function are returned to the command line.
 function varargout = dsp_filtering_OutputFcn(hObject, eventdata, handles)
@@ -134,7 +167,7 @@ function slider_F1_Callback(hObject, eventdata, handles)
 global F1
 F1 = get(handles.slider_F1,'Value');
 set(handles.F1,'String',F1);
-
+UpdateUI(handles)
 
 % --- Executes during object creation, after setting all properties.
 function slider_F1_CreateFcn(hObject, eventdata, handles)
@@ -159,6 +192,7 @@ function slider_F2_Callback(hObject, eventdata, handles)
 global F2
 F2 = get(handles.slider_F2,'Value');
 set(handles.F2,'String',F2);
+UpdateUI(handles)
 
 % --- Executes during object creation, after setting all properties.
 function slider_F2_CreateFcn(hObject, eventdata, handles)
@@ -183,6 +217,7 @@ function slider_F3_Callback(hObject, eventdata, handles)
 global F3
 F3 = get(handles.slider_F3,'Value');
 set(handles.F3,'String',F3);
+UpdateUI(handles)
 
 % --- Executes during object creation, after setting all properties.
 function slider_F3_CreateFcn(hObject, eventdata, handles)
@@ -208,6 +243,7 @@ function slider_F4_Callback(hObject, eventdata, handles)
 global F4
 F4 = get(handles.slider_F4,'Value');
 set(handles.F4,'String',F4);
+UpdateUI(handles)
 
 % --- Executes during object creation, after setting all properties.
 function slider_F4_CreateFcn(hObject, eventdata, handles)
@@ -261,6 +297,8 @@ A1 = str2double(get(handles.edit_A1, 'String'));
 
 if (A1 > maxA) || (A1 < minA)
     msgbox('Please add a value between 0 and 3.');
+else
+    UpdateUI(handles)
 end
 
 
@@ -293,6 +331,8 @@ A2 = str2double(get(handles.edit_A2, 'String'));
 
 if (A2 > maxA) || (A2 < minA)
     msgbox('Please add a value between 0 and 3.');
+else
+    UpdateUI(handles)
 end
 
 % --- Executes during object creation, after setting all properties.
@@ -324,6 +364,8 @@ A3 = str2double(get(handles.edit_A3, 'String'));
 
 if (A3 > maxA) || (A3 < minA)
     msgbox('Please add a value between 0 and 3.');
+else
+    UpdateUI(handles)
 end
 
 % --- Executes during object creation, after setting all properties.
@@ -353,6 +395,8 @@ A4 = str2double(get(handles.edit_A4, 'String'));
 
 if (A4 > maxA) || (A4 < minA)
     msgbox('Please add a value between 0 and 3.');
+else
+    UpdateUI(handles)
 end
 
 % --- Executes during object creation, after setting all properties.
