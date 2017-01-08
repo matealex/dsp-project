@@ -585,7 +585,6 @@ function edit_N_Callback(hObject, eventdata, handles)
 
 global N;
 N = str2double(get(handles.edit_N ,'String'));
-UpdateUI(handles)
 
 % --- Executes during object creation, after setting all properties.
 function edit_N_CreateFcn(hObject, eventdata, handles)
@@ -611,7 +610,6 @@ function edit_Ft1_Callback(hObject, eventdata, handles)
 
 global Ft1;
 Ft1 = str2double(get(handles.edit_Ft1 ,'String'));
-UpdateUI(handles)
 
 % --- Executes during object creation, after setting all properties.
 function edit_Ft1_CreateFcn(hObject, eventdata, handles)
@@ -637,7 +635,6 @@ function edit_Ft2_Callback(hObject, eventdata, handles)
 
 global Ft2;
 Ft2 = str2double(get(handles.edit_Ft2,'String'));
-UpdateUI(handles)
 
 % --- Executes during object creation, after setting all properties.
 function edit_Ft2_CreateFcn(hObject, eventdata, handles)
