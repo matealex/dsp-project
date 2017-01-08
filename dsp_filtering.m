@@ -136,6 +136,11 @@ btnGenerateS3_Callback([], [], handles)
 btnGenerateS4_Callback([], [], handles)
 btnGenerateS5_Callback([], [], handles)
 
+btnSpectruSemnalNefiltrat_Callback([], [], handles)
+btnCaracteristici_Callback([], [], handles)
+btnSpectruSemnalFiltrat_Callback([], [], handles)
+btnSemnalFiltratTimp_Callback([], [], handles)
+
 % --- Outputs from this function are returned to the command line.
 function varargout = dsp_filtering_OutputFcn(hObject, eventdata, handles)
 % varargout  cell array for returning output args (see VARARGOUT);
