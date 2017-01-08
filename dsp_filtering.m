@@ -130,11 +130,20 @@ UpdateUI(handles)
 
 function UpdateUI(handles)
 
+global N
+global Ft1
+global Ft2
+global Fs
+global hh
+global filterType
+
 btnGenerateS1_Callback([], [], handles)
 btnGenerateS2_Callback([], [], handles)
 btnGenerateS3_Callback([], [], handles)
 btnGenerateS4_Callback([], [], handles)
 btnGenerateS5_Callback([], [], handles)
+
+hh = generateFilter(Ft1, Ft2, N, Fs,filterType);
 
 btnSpectruSemnalNefiltrat_Callback([], [], handles)
 btnCaracteristici_Callback([], [], handles)
@@ -515,14 +524,8 @@ function btnFTJ_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-global N
-global Ft1
-global Fs
-global hh
 global filterType
-
 filterType = 'FTJ';
-hh = generateFTJ(Ft1, N, Fs);
 UpdateUI(handles)
 
 % --- Executes on button press in btnFTS.
@@ -531,14 +534,8 @@ function btnFTS_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-global N
-global Ft1
-global Fs
-global hh
 global filterType
-
 filterType = 'FTS';
-hh = generateFTS(Ft1, N, Fs);
 UpdateUI(handles)
 
 % --- Executes on button press in btnFTB.
@@ -547,15 +544,8 @@ function btnFTB_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-global N
-global Ft1
-global Ft2
-global Fs
-global hh
 global filterType
-
 filterType = 'FTB';
-hh = generateFTB(Ft1, Ft2, N, Fs);
 UpdateUI(handles)
 
 % --- Executes on button press in btnFOB.
@@ -564,15 +554,8 @@ function btnFOB_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-global N
-global Ft1
-global Ft2
-global Fs
-global hh
 global filterType
-
 filterType = 'FOB';
-hh = generateFOB(Ft1, Ft2, N, Fs);
 UpdateUI(handles)
 
 function edit_N_Callback(hObject, eventdata, handles)
