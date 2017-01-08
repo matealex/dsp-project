@@ -27,11 +27,11 @@ function varargout = dsp_filtering(varargin)
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
 gui_State = struct('gui_Name',       mfilename, ...
-                   'gui_Singleton',  gui_Singleton, ...
-                   'gui_OpeningFcn', @dsp_filtering_OpeningFcn, ...
-                   'gui_OutputFcn',  @dsp_filtering_OutputFcn, ...
-                   'gui_LayoutFcn',  [] , ...
-                   'gui_Callback',   []);
+    'gui_Singleton',  gui_Singleton, ...
+    'gui_OpeningFcn', @dsp_filtering_OpeningFcn, ...
+    'gui_OutputFcn',  @dsp_filtering_OutputFcn, ...
+    'gui_LayoutFcn',  [] , ...
+    'gui_Callback',   []);
 if nargin && ischar(varargin{1})
     gui_State.gui_Callback = str2func(varargin{1});
 end
@@ -61,29 +61,50 @@ guidata(hObject, handles);
 % UIWAIT makes dsp_filtering wait for user response (see UIRESUME)
 % uiwait(handles.figure1);
 
+%CONSTANTS
 global fi0;
-global durata;
-
-durata = 1;
 fi0 = 0;
-
-%frecventa de esantionare: Fs = 10kHz
-global Fs; 
+global durata;
+durata = 1;
+global Fs;
 Fs = 10000;
+global maxA;
+maxA = 3;
+global minA;
+minA = 0;
+
+%SET VARIABLES INITIAL VALUE
 global N;
 N = 100;
+
+global filterType
+filterType = 'FTJ';
+
+%SET DEFAULT VALUES IN GUI
 set(handles.edit_N,'string',N);
 
-global maxA;
-global minA;
+set(handles.slider_F1,'Value',100);
+set(handles.F1,'String',num2str(100));
+set(handles.edit_A1,'String',num2str(1));
 
-minA = 0;
-maxA = 3;
+set(handles.slider_F2,'Value',100);
+set(handles.F2,'String',num2str(100));
+set(handles.edit_A2,'String',num2str(1));
 
+set(handles.slider_F3,'Value',100);
+set(handles.F3,'String',num2str(100));
+set(handles.edit_A3,'String',num2str(1));
+
+set(handles.slider_F4,'Value',100);
+set(handles.F4,'String',num2str(100));
+set(handles.edit_A4,'String',num2str(1));
+
+set(handles.edit_Ft1,'String',num2str(100));
+set(handles.edit_Ft2,'String',num2str(100));
 
 
 % --- Outputs from this function are returned to the command line.
-function varargout = dsp_filtering_OutputFcn(hObject, eventdata, handles) 
+function varargout = dsp_filtering_OutputFcn(hObject, eventdata, handles)
 % varargout  cell array for returning output args (see VARARGOUT);
 % hObject    handle to figure
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -98,8 +119,8 @@ function student_info_Callback(hObject, eventdata, handles)
 % hObject    handle to student_info (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-    
-    h = msgbox({'Grupa 242/2:', 'Cozma Alexandru', 'Raulea Mihaela'}');
+
+h = msgbox({'Grupa 242/2:', 'Cozma Alexandru', 'Raulea Mihaela'}');
 
 % --- Executes on slider movement.
 function slider_F1_Callback(hObject, eventdata, handles)
@@ -110,9 +131,9 @@ function slider_F1_Callback(hObject, eventdata, handles)
 % Hints: get(hObject,'Value') returns position of slider
 %        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
 
-    global F1
-    F1 = get(handles.slider_F1,'Value');
-    set(handles.F1,'String',F1);
+global F1
+F1 = get(handles.slider_F1,'Value');
+set(handles.F1,'String',F1);
 
 
 % --- Executes during object creation, after setting all properties.
@@ -135,9 +156,9 @@ function slider_F2_Callback(hObject, eventdata, handles)
 % Hints: get(hObject,'Value') returns position of slider
 %        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
 
-    global F2
-    F2 = get(handles.slider_F2,'Value');
-    set(handles.F2,'String',F2);
+global F2
+F2 = get(handles.slider_F2,'Value');
+set(handles.F2,'String',F2);
 
 % --- Executes during object creation, after setting all properties.
 function slider_F2_CreateFcn(hObject, eventdata, handles)
@@ -159,9 +180,9 @@ function slider_F3_Callback(hObject, eventdata, handles)
 % Hints: get(hObject,'Value') returns position of slider
 %        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
 
-    global F3
-    F3 = get(handles.slider_F3,'Value');
-    set(handles.F3,'String',F3);
+global F3
+F3 = get(handles.slider_F3,'Value');
+set(handles.F3,'String',F3);
 
 % --- Executes during object creation, after setting all properties.
 function slider_F3_CreateFcn(hObject, eventdata, handles)
@@ -184,9 +205,9 @@ function slider_F4_Callback(hObject, eventdata, handles)
 % Hints: get(hObject,'Value') returns position of slider
 %        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
 
-    global F4
-    F4 = get(handles.slider_F4,'Value');
-    set(handles.F4,'String',F4);
+global F4
+F4 = get(handles.slider_F4,'Value');
+set(handles.F4,'String',F4);
 
 % --- Executes during object creation, after setting all properties.
 function slider_F4_CreateFcn(hObject, eventdata, handles)
@@ -209,9 +230,9 @@ function slider_F5_Callback(hObject, eventdata, handles)
 % Hints: get(hObject,'Value') returns position of slider
 %        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
 
-    global F5
-    F5 = get(handles.slider_F5,'Value');
-    set(handles.F5,'String',F5);
+global F5
+F5 = get(handles.slider_F5,'Value');
+set(handles.F5,'String',F5);
 
 % --- Executes during object creation, after setting all properties.
 function slider_F5_CreateFcn(hObject, eventdata, handles)
@@ -233,15 +254,15 @@ function edit_A1_Callback(hObject, eventdata, handles)
 % Hints: get(hObject,'String') returns contents of edit_A1 as text
 %        str2double(get(hObject,'String')) returns contents of edit_A1 as a double
 
-    global maxA
-    global minA
-    global A1
-    A1 = str2double(get(handles.edit_A1, 'String'));
-     
-    if (A1 > maxA) || (A1 < minA)
-       msgbox('Please add a value between 0 and 3.');
-    end
-    
+global maxA
+global minA
+global A1
+A1 = str2double(get(handles.edit_A1, 'String'));
+
+if (A1 > maxA) || (A1 < minA)
+    msgbox('Please add a value between 0 and 3.');
+end
+
 
 % --- Executes during object creation, after setting all properties.
 function edit_A1_CreateFcn(hObject, eventdata, handles)
@@ -265,14 +286,14 @@ function edit_A2_Callback(hObject, eventdata, handles)
 % Hints: get(hObject,'String') returns contents of edit_A2 as text
 %        str2double(get(hObject,'String')) returns contents of edit_A2 as a double
 
-    global maxA
-    global minA
-    global A2
-    A2 = str2double(get(handles.edit_A2, 'String'));
-     
-    if (A2 > maxA) || (A2 < minA)
-       msgbox('Please add a value between 0 and 3.');
-    end
+global maxA
+global minA
+global A2
+A2 = str2double(get(handles.edit_A2, 'String'));
+
+if (A2 > maxA) || (A2 < minA)
+    msgbox('Please add a value between 0 and 3.');
+end
 
 % --- Executes during object creation, after setting all properties.
 function edit_A2_CreateFcn(hObject, eventdata, handles)
@@ -296,14 +317,14 @@ function edit_A3_Callback(hObject, eventdata, handles)
 % Hints: get(hObject,'String') returns contents of edit_A3 as text
 %        str2double(get(hObject,'String')) returns contents of edit_A3 as a double
 
-    global maxA
-    global minA
-    global A3
-    A3 = str2double(get(handles.edit_A3, 'String'));
-     
-    if (A3 > maxA) || (A3 < minA)
-       msgbox('Please add a value between 0 and 3.');
-    end
+global maxA
+global minA
+global A3
+A3 = str2double(get(handles.edit_A3, 'String'));
+
+if (A3 > maxA) || (A3 < minA)
+    msgbox('Please add a value between 0 and 3.');
+end
 
 % --- Executes during object creation, after setting all properties.
 function edit_A3_CreateFcn(hObject, eventdata, handles)
@@ -325,14 +346,14 @@ function edit_A4_Callback(hObject, eventdata, handles)
 % Hints: get(hObject,'String') returns contents of edit_A4 as text
 %        str2double(get(hObject,'String')) returns contents of edit_A4 as a double
 
-    global maxA
-    global minA
-    global A4
-    A4 = str2double(get(handles.edit_A4, 'String'));
-     
-    if (A4 > maxA) || (A4 < minA)
-       msgbox('Please add a value between 0 and 3.');
-    end
+global maxA
+global minA
+global A4
+A4 = str2double(get(handles.edit_A4, 'String'));
+
+if (A4 > maxA) || (A4 < minA)
+    msgbox('Please add a value between 0 and 3.');
+end
 
 % --- Executes during object creation, after setting all properties.
 function edit_A4_CreateFcn(hObject, eventdata, handles)
@@ -355,14 +376,14 @@ function edit_A5_Callback(hObject, eventdata, handles)
 % Hints: get(hObject,'String') returns contents of edit_A5 as text
 %        str2double(get(hObject,'String')) returns contents of edit_A5 as a double
 
-    global maxA
-    global minA
-    global A5
-    A5 = str2double(get(handles.edit_A5, 'String'));
-     
-    if (A5 > maxA) || (A5 < minA)
-       msgbox('Please add a value between 0 and 3.');
-    end
+global maxA
+global minA
+global A5
+A5 = str2double(get(handles.edit_A5, 'String'));
+
+if (A5 > maxA) || (A5 < minA)
+    msgbox('Please add a value between 0 and 3.');
+end
 
 % --- Executes during object creation, after setting all properties.
 function edit_A5_CreateFcn(hObject, eventdata, handles)
@@ -383,21 +404,21 @@ function btnGenerateS1_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-    global fi0
-    global durata
-    global Fs
-    global A1
-    global F1
-    global s1
-    global maxA
-    
+global fi0
+global durata
+global Fs
+global A1
+global F1
+global s1
+global maxA
 
-    [t, s] = generateSineWave(A1, F1, Fs, durata, fi0);
-    axes(handles.s1_axes);   
-    displayGraph(t, s, durata, 'Sinusoida s1', 1, maxA);
-    xlabel('timp[s]');
-    zoom on;
-    s1 = s;
+
+[t, s] = generateSineWave(A1, F1, Fs, durata, fi0);
+axes(handles.s1_axes);
+displayGraph(t, s, durata, 'Sinusoida s1', 1, maxA);
+xlabel('timp[s]');
+zoom on;
+s1 = s;
 
 
 % --- Executes on button press in btnGenerateS2.
@@ -406,20 +427,20 @@ function btnGenerateS2_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-    global fi0
-    global durata
-    global Fs
-    global A2
-    global F2
-    global s2
-    global maxA
+global fi0
+global durata
+global Fs
+global A2
+global F2
+global s2
+global maxA
 
-    [t, s] = generateSineWave(A2, F2, Fs, durata, fi0);
-    axes(handles.s2_axes);
-    displayGraph(t, s, durata, 'Sinusoida s2', 1, maxA);
-    xlabel('timp[s]');
-    s2 = s;
-    zoom on;
+[t, s] = generateSineWave(A2, F2, Fs, durata, fi0);
+axes(handles.s2_axes);
+displayGraph(t, s, durata, 'Sinusoida s2', 1, maxA);
+xlabel('timp[s]');
+s2 = s;
+zoom on;
 
 % --- Executes on button press in btnGenerateS3.
 function btnGenerateS3_Callback(hObject, eventdata, handles)
@@ -427,21 +448,21 @@ function btnGenerateS3_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-    global fi0
-    global durata
-    global Fs
-    global A3
-    global F3
-    global s3
-    global maxA
-    
+global fi0
+global durata
+global Fs
+global A3
+global F3
+global s3
+global maxA
 
-    [t, s] = generateTriangleWave(A3, F3, Fs, durata);
-    axes(handles.s3_axes);
-    displayGraph(t, s, durata, 'Semnal triunghiular s3', 1, maxA);
-    xlabel('timp[s]');
-    s3 = s;
-    zoom on;
+
+[t, s] = generateTriangleWave(A3, F3, Fs, durata);
+axes(handles.s3_axes);
+displayGraph(t, s, durata, 'Semnal triunghiular s3', 1, maxA);
+xlabel('timp[s]');
+s3 = s;
+zoom on;
 
 % --- Executes on button press in btnGenerateS4.
 function btnGenerateS4_Callback(hObject, eventdata, handles)
@@ -449,21 +470,21 @@ function btnGenerateS4_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-    global fi0
-    global durata
-    global Fs
-    global A4
-    global F4
-    global s4
-    
-    global maxA
+global fi0
+global durata
+global Fs
+global A4
+global F4
+global s4
 
-    [t, s] = generateSquareWave(A4, F4, Fs, durata);
-    axes(handles.s4_axes);
-    displayGraph(t, s, durata, 'Semnal dreptunghiular s4', 1, maxA);
-    xlabel('timp[s]');
-    s4 = s;
-    zoom on;
+global maxA
+
+[t, s] = generateSquareWave(A4, F4, Fs, durata);
+axes(handles.s4_axes);
+displayGraph(t, s, durata, 'Semnal dreptunghiular s4', 1, maxA);
+xlabel('timp[s]');
+s4 = s;
+zoom on;
 
 % --- Executes on button press in btnGenerateS5.
 function btnGenerateS5_Callback(hObject, eventdata, handles)
@@ -471,28 +492,28 @@ function btnGenerateS5_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-    global fi0
-    global durata
-    global Fs
-    global A5
-    global F5
+global fi0
+global durata
+global Fs
+global A5
+global F5
 
-    global s1
-    global s2
-    global s3
-    global s4
-    
-    global maxA
-    
-    global Semnal_1
-    
-    Semnal_1 = s1 + s2 + s3 + s4;
-    t = 0:1/Fs:durata;
-    
-    axes(handles.semnal_1_axes);
-    displayGraph(t, Semnal_1, durata, 'Suma: Semnal_1', 1, maxA);
-    xlabel('timp[s]');
-    zoom on;
+global s1
+global s2
+global s3
+global s4
+
+global maxA
+
+global Semnal_1
+
+Semnal_1 = s1 + s2 + s3 + s4;
+t = 0:1/Fs:durata;
+
+axes(handles.semnal_1_axes);
+displayGraph(t, Semnal_1, durata, 'Suma: Semnal_1', 1, maxA);
+xlabel('timp[s]');
+zoom on;
 
 
 % --- Executes on button press in btnFTJ.
@@ -501,14 +522,14 @@ function btnFTJ_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-    global N
-    global Ft1
-    global Fs
-    global hh
-    global filterType
-    
-    filterType = 'FTJ';
-    hh = generateFTJ(Ft1, N, Fs);
+global N
+global Ft1
+global Fs
+global hh
+global filterType
+
+filterType = 'FTJ';
+hh = generateFTJ(Ft1, N, Fs);
 
 % --- Executes on button press in btnFTS.
 function btnFTS_Callback(hObject, eventdata, handles)
@@ -516,14 +537,14 @@ function btnFTS_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-    global N
-    global Ft1
-    global Fs
-    global hh
-    global filterType
-    
-    filterType = 'FTS';    
-    hh = generateFTS(Ft1, N, Fs);
+global N
+global Ft1
+global Fs
+global hh
+global filterType
+
+filterType = 'FTS';
+hh = generateFTS(Ft1, N, Fs);
 
 % --- Executes on button press in btnFTB.
 function btnFTB_Callback(hObject, eventdata, handles)
@@ -531,15 +552,15 @@ function btnFTB_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-    global N
-    global Ft1
-    global Ft2
-    global Fs
-    global hh
-    global filterType
-    
-    filterType = 'FTB';    
-    hh = generateFTB(Ft1, Ft2, N, Fs);
+global N
+global Ft1
+global Ft2
+global Fs
+global hh
+global filterType
+
+filterType = 'FTB';
+hh = generateFTB(Ft1, Ft2, N, Fs);
 
 % --- Executes on button press in btnFOB.
 function btnFOB_Callback(hObject, eventdata, handles)
@@ -547,15 +568,15 @@ function btnFOB_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-    global N
-    global Ft1
-    global Ft2
-    global Fs
-    global hh
-    global filterType
-    
-    filterType = 'FOB';    
-    hh = generateFOB(Ft1, Ft2, N, Fs);
+global N
+global Ft1
+global Ft2
+global Fs
+global hh
+global filterType
+
+filterType = 'FOB';
+hh = generateFOB(Ft1, Ft2, N, Fs);
 
 
 function edit_N_Callback(hObject, eventdata, handles)
@@ -566,8 +587,8 @@ function edit_N_Callback(hObject, eventdata, handles)
 % Hints: get(hObject,'String') returns contents of edit_N as text
 %        str2double(get(hObject,'String')) returns contents of edit_N as a double
 
-    global N;    
-    N = str2double(get(handles.edit_N ,'String'));
+global N;
+N = str2double(get(handles.edit_N ,'String'));
 
 % --- Executes during object creation, after setting all properties.
 function edit_N_CreateFcn(hObject, eventdata, handles)
@@ -591,8 +612,8 @@ function edit_Ft1_Callback(hObject, eventdata, handles)
 % Hints: get(hObject,'String') returns contents of edit_Ft1 as text
 %        str2double(get(hObject,'String')) returns contents of edit_Ft1 as a double
 
-    global Ft1;    
-    Ft1 = str2double(get(handles.edit_Ft1 ,'String'));
+global Ft1;
+Ft1 = str2double(get(handles.edit_Ft1 ,'String'));
 
 % --- Executes during object creation, after setting all properties.
 function edit_Ft1_CreateFcn(hObject, eventdata, handles)
@@ -616,8 +637,8 @@ function edit_Ft2_Callback(hObject, eventdata, handles)
 % Hints: get(hObject,'String') returns contents of edit_Ft2 as text
 %        str2double(get(hObject,'String')) returns contents of edit_Ft2 as a double
 
-    global Ft2;    
-    Ft2 = str2double(get(handles.edit_Ft2,'String'));
+global Ft2;
+Ft2 = str2double(get(handles.edit_Ft2,'String'));
 
 % --- Executes during object creation, after setting all properties.
 function edit_Ft2_CreateFcn(hObject, eventdata, handles)
@@ -638,14 +659,14 @@ function btnSpectruSemnalNefiltrat_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-    global Semnal_1
-    global Fs
-    S = fftshift(abs(fft(Semnal_1)));
-    axaFFT = linspace(-Fs/2, Fs/2, length(Semnal_1));
-    
-    axes(handles.spectru_semnal_1_nefiltrat_axes);
-    displayGraph(axaFFT, S, 'Spectru semnal nefiltrat', 0, 0);
-    zoom on;
+global Semnal_1
+global Fs
+S = fftshift(abs(fft(Semnal_1)));
+axaFFT = linspace(-Fs/2, Fs/2, length(Semnal_1));
+
+axes(handles.spectru_semnal_1_nefiltrat_axes);
+displayGraph(axaFFT, S, 'Spectru semnal nefiltrat', 0, 0);
+zoom on;
 
 % --- Executes on button press in btnSpectruSemnalFiltrat.
 function btnSpectruSemnalFiltrat_Callback(hObject, eventdata, handles)
@@ -653,17 +674,17 @@ function btnSpectruSemnalFiltrat_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-    global Semnal_1
-    global hh
-    global Fs
-    global S_filtrat
-    S_filtrat = conv(Semnal_1, hh);
-    Spectru_filtrat = fftshift(abs(fft(S_filtrat)));
-    axaFFTS_filtrat = linspace(-Fs/2, Fs/2, length(Spectru_filtrat));
-    
-    axes(handles.spectru_semnal_1_filtrat_axes);
-    displayGraph(axaFFTS_filtrat, Spectru_filtrat, 'Spectru semnal filtrat', 0, 0);
-    zoom on;
+global Semnal_1
+global hh
+global Fs
+global S_filtrat
+S_filtrat = conv(Semnal_1, hh);
+Spectru_filtrat = fftshift(abs(fft(S_filtrat)));
+axaFFTS_filtrat = linspace(-Fs/2, Fs/2, length(Spectru_filtrat));
+
+axes(handles.spectru_semnal_1_filtrat_axes);
+displayGraph(axaFFTS_filtrat, Spectru_filtrat, 'Spectru semnal filtrat', 0, 0);
+zoom on;
 
 % --- Executes on button press in btnSemnalFiltratTimp.
 function btnSemnalFiltratTimp_Callback(hObject, eventdata, handles)
@@ -690,17 +711,17 @@ function btnCaracteristici_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 
-    global Fs
-    global hh
-    global filterType
-    global Ft1
-    global Ft2
-    
-    cla(handles.caracteristica_amplitudine_filtru_axes);
-    
-    axes(handles.caracteristica_amplitudine_filtru_axes);
-    generateCharacteristics( hh, Fs, filterType, Ft1, Ft2);
-    zoom on;
+global Fs
+global hh
+global filterType
+global Ft1
+global Ft2
+
+cla(handles.caracteristica_amplitudine_filtru_axes);
+
+axes(handles.caracteristica_amplitudine_filtru_axes);
+generateCharacteristics( hh, Fs, filterType, Ft1, Ft2);
+zoom on;
 
 % --- Executes on button press in btnSemnalAudio.
 function btnSemnalAudio_Callback(hObject, eventdata, handles)
@@ -708,4 +729,4 @@ function btnSemnalAudio_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-    dsp_filtering_sound
+dsp_filtering_sound
