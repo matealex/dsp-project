@@ -90,19 +90,19 @@ global A2
 global F2
 global s2
 A2=1;
-F2=100;
+F2=200;
 
 global A3
 global F3
 global s3
 A3=1;
-F3=100;
+F3=300;
 
 global A4
 global F4
 global s4
 A4=1;
-F4=100;
+F4=400;
 
 global Ft1
 global Ft2
@@ -142,18 +142,18 @@ global Fs
 global hh
 global filterType
 
-btnGenerateS1_Callback([], [], handles)
-btnGenerateS2_Callback([], [], handles)
-btnGenerateS3_Callback([], [], handles)
-btnGenerateS4_Callback([], [], handles)
-btnGenerateS5_Callback([], [], handles)
+GenerateS1(handles)
+GenerateS2(handles)
+GenerateS3(handles)
+GenerateS4(handles)
+GenerateS5(handles)
 
 hh = generateFilter(Ft1, Ft2, N, Fs,filterType);
 
-btnSpectruSemnalNefiltrat_Callback([], [], handles)
-btnCaracteristici_Callback([], [], handles)
-btnSpectruSemnalFiltrat_Callback([], [], handles)
-btnSemnalFiltratTimp_Callback([], [], handles)
+AfiseazaSpectruSemnalNefiltrat(handles)
+AfiseazaCaracteristici(handles)
+AfiseazaSpectruSemnalFiltrat(handles)
+AfiseazaSemnalFiltratInTimp(handles)
 
 % --- Outputs from this function are returned to the command line.
 function varargout = dsp_filtering_OutputFcn(hObject, eventdata, handles)
@@ -405,11 +405,7 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-% --- Executes on button press in btnGenerateS1.
-function btnGenerateS1_Callback(hObject, eventdata, handles)
-% hObject    handle to btnGenerateS1 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+function GenerateS1(handles)
 
 global fi0
 global durata
@@ -426,12 +422,7 @@ xlabel('timp[s]');
 zoom on;
 s1 = s;
 
-
-% --- Executes on button press in btnGenerateS2.
-function btnGenerateS2_Callback(hObject, eventdata, handles)
-% hObject    handle to btnGenerateS2 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+function GenerateS2(handles)
 
 global fi0
 global durata
@@ -448,12 +439,7 @@ xlabel('timp[s]');
 zoom on;
 s2 = s;
 
-
-% --- Executes on button press in btnGenerateS3.
-function btnGenerateS3_Callback(hObject, eventdata, handles)
-% hObject    handle to btnGenerateS3 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+function GenerateS3(handles)
 
 global durata
 global Fs
@@ -469,12 +455,7 @@ xlabel('timp[s]');
 zoom on;
 s3 = s;
 
-
-% --- Executes on button press in btnGenerateS4.
-function btnGenerateS4_Callback(hObject, eventdata, handles)
-% hObject    handle to btnGenerateS4 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+function GenerateS4(handles)
 
 global durata
 global Fs
@@ -490,12 +471,7 @@ xlabel('timp[s]');
 zoom on;
 s4 = s;
 
-
-% --- Executes on button press in btnGenerateS5.
-function btnGenerateS5_Callback(hObject, eventdata, handles)
-% hObject    handle to btnGenerateS5 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+function GenerateS5(handles)
 
 global durata
 global Fs
@@ -631,12 +607,7 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-
-% --- Executes on button press in btnSpectruSemnalNefiltrat.
-function btnSpectruSemnalNefiltrat_Callback(hObject, eventdata, handles)
-% hObject    handle to btnSpectruSemnalNefiltrat (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+function AfiseazaSpectruSemnalNefiltrat(handles)
 
 global Semnal_1
 global Fs
@@ -647,11 +618,7 @@ axes(handles.spectru_semnal_1_nefiltrat_axes);
 displayGraph(axaFFT, S, 'Spectru semnal nefiltrat', 0, 0);
 zoom on;
 
-% --- Executes on button press in btnSpectruSemnalFiltrat.
-function btnSpectruSemnalFiltrat_Callback(hObject, eventdata, handles)
-% hObject    handle to btnSpectruSemnalFiltrat (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+function AfiseazaSpectruSemnalFiltrat(handles)
 
 global Semnal_1
 global hh
@@ -665,11 +632,7 @@ axes(handles.spectru_semnal_1_filtrat_axes);
 displayGraph(axaFFTS_filtrat, Spectru_filtrat, 'Spectru semnal filtrat', 0, 0);
 zoom on;
 
-% --- Executes on button press in btnSemnalFiltratTimp.
-function btnSemnalFiltratTimp_Callback(hObject, eventdata, handles)
-% hObject    handle to btnSemnalFiltratTimp (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+function AfiseazaSemnalFiltratInTimp( handles)
 
 %TO DO NEXT
 global S_filtrat
@@ -683,12 +646,7 @@ plot(S_filtrat);
 title('Semnal filtrat');
 zoom on;
 
-% --- Executes on button press in btnCaracteristici.
-function btnCaracteristici_Callback(hObject, eventdata, handles)
-% hObject    handle to btnCaracteristici (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
+function AfiseazaCaracteristici(handles)
 
 global Fs
 global hh
@@ -697,7 +655,6 @@ global Ft1
 global Ft2
 
 cla(handles.caracteristica_amplitudine_filtru_axes);
-
 axes(handles.caracteristica_amplitudine_filtru_axes);
 generateCharacteristics( hh, Fs, filterType, Ft1, Ft2);
 zoom on;

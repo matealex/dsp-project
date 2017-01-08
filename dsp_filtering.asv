@@ -104,27 +104,32 @@ global s4
 A4=1;
 F4=100;
 
+global Ft1
+global Ft2
+Ft1= 100;
+Ft2= 200;
+
 %SET DEFAULT VALUES IN GUI
 set(handles.edit_N,'string',N);
 
-set(handles.slider_F1,'Value',100);
-set(handles.F1,'String',num2str(100));
-set(handles.edit_A1,'String',num2str(1));
+set(handles.slider_F1,'Value',F1);
+set(handles.F1,'String',num2str(F1));
+set(handles.edit_A1,'String',num2str(A1));
 
-set(handles.slider_F2,'Value',100);
-set(handles.F2,'String',num2str(100));
-set(handles.edit_A2,'String',num2str(1));
+set(handles.slider_F2,'Value',F2);
+set(handles.F2,'String',num2str(F2));
+set(handles.edit_A2,'String',num2str(A2));
 
-set(handles.slider_F3,'Value',100);
-set(handles.F3,'String',num2str(100));
-set(handles.edit_A3,'String',num2str(1));
+set(handles.slider_F3,'Value',F3);
+set(handles.F3,'String',num2str(F3));
+set(handles.edit_A3,'String',num2str(A3));
 
-set(handles.slider_F4,'Value',100);
-set(handles.F4,'String',num2str(100));
-set(handles.edit_A4,'String',num2str(1));
+set(handles.slider_F4,'Value',F4);
+set(handles.F4,'String',num2str(F4));
+set(handles.edit_A4,'String',num2str(A4));
 
-set(handles.edit_Ft1,'String',num2str(100));
-set(handles.edit_Ft2,'String',num2str(100));
+set(handles.edit_Ft1,'String',num2str(Ft1));
+set(handles.edit_Ft2,'String',num2str(Ft2));
 
 UpdateUI(handles)
 
@@ -137,11 +142,11 @@ global Fs
 global hh
 global filterType
 
-btnGenerateS1_Callback([], [], handles)
-btnGenerateS2_Callback([], [], handles)
-btnGenerateS3_Callback([], [], handles)
-btnGenerateS4_Callback([], [], handles)
-btnGenerateS5_Callback([], [], handles)
+GenerateS1(handles)
+btnGenerateS2_Callback(handles)
+btnGenerateS3_Callback(handles)
+btnGenerateS4_Callback(handles)
+btnGenerateS5_Callback(handles)
 
 hh = generateFilter(Ft1, Ft2, N, Fs,filterType);
 
@@ -400,11 +405,7 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-% --- Executes on button press in btnGenerateS1.
-function btnGenerateS1_Callback(hObject, eventdata, handles)
-% hObject    handle to btnGenerateS1 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+function GenerateS1(handles)
 
 global fi0
 global durata
@@ -421,12 +422,7 @@ xlabel('timp[s]');
 zoom on;
 s1 = s;
 
-
-% --- Executes on button press in btnGenerateS2.
-function btnGenerateS2_Callback(hObject, eventdata, handles)
-% hObject    handle to btnGenerateS2 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+function btnGenerateS2_Callback(handles)
 
 global fi0
 global durata
@@ -443,12 +439,7 @@ xlabel('timp[s]');
 zoom on;
 s2 = s;
 
-
-% --- Executes on button press in btnGenerateS3.
-function btnGenerateS3_Callback(hObject, eventdata, handles)
-% hObject    handle to btnGenerateS3 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+function btnGenerateS3_Callback(handles)
 
 global durata
 global Fs
@@ -464,12 +455,7 @@ xlabel('timp[s]');
 zoom on;
 s3 = s;
 
-
-% --- Executes on button press in btnGenerateS4.
-function btnGenerateS4_Callback(hObject, eventdata, handles)
-% hObject    handle to btnGenerateS4 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+function btnGenerateS4_Callback(handles)
 
 global durata
 global Fs
@@ -485,12 +471,7 @@ xlabel('timp[s]');
 zoom on;
 s4 = s;
 
-
-% --- Executes on button press in btnGenerateS5.
-function btnGenerateS5_Callback(hObject, eventdata, handles)
-% hObject    handle to btnGenerateS5 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+function btnGenerateS5_Callback(handles)
 
 global durata
 global Fs
@@ -498,9 +479,7 @@ global s1
 global s2
 global s3
 global s4
-
 global maxA
-
 global Semnal_1
 
 Semnal_1 = s1 + s2 + s3 + s4;
