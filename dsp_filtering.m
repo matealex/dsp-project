@@ -104,27 +104,32 @@ global s4
 A4=1;
 F4=100;
 
+global Ft1
+global Ft2
+Ft1= 100;
+Ft2= 200;
+
 %SET DEFAULT VALUES IN GUI
 set(handles.edit_N,'string',N);
 
-set(handles.slider_F1,'Value',100);
-set(handles.F1,'String',num2str(100));
-set(handles.edit_A1,'String',num2str(1));
+set(handles.slider_F1,'Value',F1);
+set(handles.F1,'String',num2str(F1));
+set(handles.edit_A1,'String',num2str(A1));
 
-set(handles.slider_F2,'Value',100);
-set(handles.F2,'String',num2str(100));
-set(handles.edit_A2,'String',num2str(1));
+set(handles.slider_F2,'Value',F2);
+set(handles.F2,'String',num2str(F2));
+set(handles.edit_A2,'String',num2str(A2));
 
-set(handles.slider_F3,'Value',100);
-set(handles.F3,'String',num2str(100));
-set(handles.edit_A3,'String',num2str(1));
+set(handles.slider_F3,'Value',F3);
+set(handles.F3,'String',num2str(F3));
+set(handles.edit_A3,'String',num2str(A3));
 
-set(handles.slider_F4,'Value',100);
-set(handles.F4,'String',num2str(100));
-set(handles.edit_A4,'String',num2str(1));
+set(handles.slider_F4,'Value',F4);
+set(handles.F4,'String',num2str(F4));
+set(handles.edit_A4,'String',num2str(A4));
 
-set(handles.edit_Ft1,'String',num2str(100));
-set(handles.edit_Ft2,'String',num2str(100));
+set(handles.edit_Ft1,'String',num2str(Ft1));
+set(handles.edit_Ft2,'String',num2str(Ft2));
 
 UpdateUI(handles)
 
