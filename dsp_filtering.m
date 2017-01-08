@@ -617,7 +617,7 @@ S = fftshift(abs(fft(Semnal_1)));
 axaFFT = linspace(-Fs/2, Fs/2, length(Semnal_1));
 
 axes(handles.spectru_semnal_1_nefiltrat_axes);
-displayGraph(axaFFT, S, 'Spectru semnal nefiltrat', 0, 0);
+displayGraph(axaFFT, S,0, 'Spectru semnal nefiltrat', 0, 0);
 zoom on;
 
 
@@ -632,7 +632,7 @@ Spectru_filtrat = fftshift(abs(fft(S_filtrat)));
 axaFFTS_filtrat = linspace(-Fs/2, Fs/2, length(Spectru_filtrat));
 
 axes(handles.spectru_semnal_1_filtrat_axes);
-displayGraph(axaFFTS_filtrat, Spectru_filtrat, 'Spectru semnal filtrat', 0, 0);
+displayGraph(axaFFTS_filtrat, Spectru_filtrat,0, 'Spectru semnal filtrat', 0, 0);
 zoom on;
 
 
