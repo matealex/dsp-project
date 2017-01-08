@@ -133,6 +133,7 @@ set(handles.edit_Ft2,'String',num2str(Ft2));
 
 UpdateUI(handles)
 
+
 function UpdateUI(handles)
 
 global N
@@ -172,7 +173,8 @@ function student_info_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-h = msgbox({'Grupa 242/2:', 'Cozma Alexandru', 'Raulea Mihaela'}');
+msgbox({'Grupa 241/2:', 'Matei Alexandru', 'Elimelec Burghelea'}');
+
 
 % --- Executes on slider movement.
 function slider_F1_Callback(hObject, eventdata, handles)
@@ -188,6 +190,7 @@ F1 = get(handles.slider_F1,'Value');
 set(handles.F1,'String',F1);
 UpdateUI(handles)
 
+
 % --- Executes during object creation, after setting all properties.
 function slider_F1_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to slider_F1 (see GCBO)
@@ -198,6 +201,7 @@ function slider_F1_CreateFcn(hObject, eventdata, handles)
 if isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor',[.9 .9 .9]);
 end
+
 
 % --- Executes on slider movement.
 function slider_F2_Callback(hObject, eventdata, handles)
@@ -213,6 +217,7 @@ F2 = get(handles.slider_F2,'Value');
 set(handles.F2,'String',F2);
 UpdateUI(handles)
 
+
 % --- Executes during object creation, after setting all properties.
 function slider_F2_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to slider_F2 (see GCBO)
@@ -223,6 +228,7 @@ function slider_F2_CreateFcn(hObject, eventdata, handles)
 if isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor',[.9 .9 .9]);
 end
+
 
 % --- Executes on slider movement.
 function slider_F3_Callback(hObject, eventdata, handles)
@@ -237,6 +243,7 @@ global F3
 F3 = get(handles.slider_F3,'Value');
 set(handles.F3,'String',F3);
 UpdateUI(handles)
+
 
 % --- Executes during object creation, after setting all properties.
 function slider_F3_CreateFcn(hObject, eventdata, handles)
@@ -263,6 +270,7 @@ global F4
 F4 = get(handles.slider_F4,'Value');
 set(handles.F4,'String',F4);
 UpdateUI(handles)
+
 
 % --- Executes during object creation, after setting all properties.
 function slider_F4_CreateFcn(hObject, eventdata, handles)
@@ -302,7 +310,6 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
-
 function edit_A2_Callback(hObject, eventdata, handles)
 % hObject    handle to edit_A2 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -314,6 +321,7 @@ function edit_A2_Callback(hObject, eventdata, handles)
 global A2
 A2 = str2double(get(handles.edit_A2, 'String'));
 CompareToMinMax(A2,handles)
+
 
 % --- Executes during object creation, after setting all properties.
 function edit_A2_CreateFcn(hObject, eventdata, handles)
@@ -328,7 +336,6 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
-
 function edit_A3_Callback(hObject, eventdata, handles)
 % hObject    handle to edit_A3 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -339,6 +346,7 @@ function edit_A3_Callback(hObject, eventdata, handles)
 global A3
 A3 = str2double(get(handles.edit_A3, 'String'));
 CompareToMinMax(A3,handles)
+
 
 % --- Executes during object creation, after setting all properties.
 function edit_A3_CreateFcn(hObject, eventdata, handles)
@@ -352,6 +360,7 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
+
 function edit_A4_Callback(hObject, eventdata, handles)
 % hObject    handle to edit_A4 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -363,6 +372,7 @@ function edit_A4_Callback(hObject, eventdata, handles)
 global A4
 A4 = str2double(get(handles.edit_A4, 'String'));
 CompareToMinMax(A4,handles)
+
 
 % --- Executes during object creation, after setting all properties.
 function edit_A4_CreateFcn(hObject, eventdata, handles)
@@ -376,6 +386,7 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
+
 function CompareToMinMax(A,handles)
 global maxA
 global minA
@@ -385,6 +396,7 @@ if (A > maxA) || (A < minA)
 else
     UpdateUI(handles)
 end
+
 
 function GenerateS1(handles)
 
@@ -403,6 +415,7 @@ xlabel('timp[s]');
 zoom on;
 s1 = s;
 
+
 function GenerateS2(handles)
 
 global fi0
@@ -420,6 +433,7 @@ xlabel('timp[s]');
 zoom on;
 s2 = s;
 
+
 function GenerateS3(handles)
 
 global durata
@@ -436,6 +450,7 @@ xlabel('timp[s]');
 zoom on;
 s3 = s;
 
+
 function GenerateS4(handles)
 
 global durata
@@ -451,6 +466,7 @@ displayGraph(t, s, durata, 'Semnal dreptunghiular s4', 1, maxA);
 xlabel('timp[s]');
 zoom on;
 s4 = s;
+
 
 function GenerateS5(handles)
 
@@ -482,6 +498,7 @@ global filterType
 filterType = 'FTJ';
 UpdateUI(handles)
 
+
 % --- Executes on button press in btnFTS.
 function btnFTS_Callback(hObject, eventdata, handles)
 % hObject    handle to btnFTS (see GCBO)
@@ -491,6 +508,7 @@ function btnFTS_Callback(hObject, eventdata, handles)
 global filterType
 filterType = 'FTS';
 UpdateUI(handles)
+
 
 % --- Executes on button press in btnFTB.
 function btnFTB_Callback(hObject, eventdata, handles)
@@ -502,6 +520,7 @@ global filterType
 filterType = 'FTB';
 UpdateUI(handles)
 
+
 % --- Executes on button press in btnFOB.
 function btnFOB_Callback(hObject, eventdata, handles)
 % hObject    handle to btnFOB (see GCBO)
@@ -511,6 +530,7 @@ function btnFOB_Callback(hObject, eventdata, handles)
 global filterType
 filterType = 'FOB';
 UpdateUI(handles)
+
 
 function edit_N_Callback(hObject, eventdata, handles)
 % hObject    handle to edit_N (see GCBO)
@@ -524,7 +544,8 @@ global N;
 N = str2double(get(handles.edit_N ,'String'));
 UpdateUI(handles)
 
-% --- Executes during object creation, after setting all properties.
+
+%--- Executes during object creation, after setting all properties.
 function edit_N_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to edit_N (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -535,7 +556,6 @@ function edit_N_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
-
 
 
 function edit_Ft1_Callback(hObject, eventdata, handles)
@@ -563,7 +583,6 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
-
 function edit_Ft2_Callback(hObject, eventdata, handles)
 % hObject    handle to edit_Ft2 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -575,6 +594,7 @@ function edit_Ft2_Callback(hObject, eventdata, handles)
 global Ft2;
 Ft2 = str2double(get(handles.edit_Ft2,'String'));
 UpdateUI(handles)
+
 
 % --- Executes during object creation, after setting all properties.
 function edit_Ft2_CreateFcn(hObject, eventdata, handles)
@@ -588,6 +608,7 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
+
 function AfiseazaSpectruSemnalNefiltrat(handles)
 
 global Semnal_1
@@ -598,6 +619,7 @@ axaFFT = linspace(-Fs/2, Fs/2, length(Semnal_1));
 axes(handles.spectru_semnal_1_nefiltrat_axes);
 displayGraph(axaFFT, S, 'Spectru semnal nefiltrat', 0, 0);
 zoom on;
+
 
 function AfiseazaSpectruSemnalFiltrat(handles)
 
@@ -613,9 +635,9 @@ axes(handles.spectru_semnal_1_filtrat_axes);
 displayGraph(axaFFTS_filtrat, Spectru_filtrat, 'Spectru semnal filtrat', 0, 0);
 zoom on;
 
+
 function AfiseazaSemnalFiltratInTimp( handles)
 
-%TO DO NEXT
 global S_filtrat
 global Fs
 global durata
@@ -626,6 +648,7 @@ cla;
 plot(S_filtrat);
 title('Semnal filtrat');
 zoom on;
+
 
 function AfiseazaCaracteristici(handles)
 
@@ -639,6 +662,7 @@ cla(handles.caracteristica_amplitudine_filtru_axes);
 axes(handles.caracteristica_amplitudine_filtru_axes);
 generateCharacteristics( hh, Fs, filterType, Ft1, Ft2);
 zoom on;
+
 
 % --- Executes on button press in btnSemnalAudio.
 function btnSemnalAudio_Callback(hObject, eventdata, handles)

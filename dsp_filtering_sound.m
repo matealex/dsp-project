@@ -151,14 +151,6 @@ sound(fwav1,Fs1);
 
 % ---------------------------------------------end of semnal1 logic
 
-% --- Executes on button press in btnInfo.
-function btnInfo_Callback(hObject, eventdata, handles)
-% hObject    handle to btnInfo (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-    h = msgbox({'Grupa 242/2:', 'Cozma Alexandru', 'Raulea Mihaela'}');
-
 % --- Executes on button press in btnSinus.
 function btnSinus_Callback(hObject, eventdata, handles)
 % hObject    handle to btnSinus (see GCBO)

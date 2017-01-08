@@ -90,19 +90,19 @@ global A2
 global F2
 global s2
 A2=1;
-F2=100;
+F2=200;
 
 global A3
 global F3
 global s3
 A3=1;
-F3=100;
+F3=300;
 
 global A4
 global F4
 global s4
 A4=1;
-F4=100;
+F4=400;
 
 global Ft1
 global Ft2
@@ -133,6 +133,7 @@ set(handles.edit_Ft2,'String',num2str(Ft2));
 
 UpdateUI(handles)
 
+
 function UpdateUI(handles)
 
 global N
@@ -143,17 +144,17 @@ global hh
 global filterType
 
 GenerateS1(handles)
-btnGenerateS2_Callback(handles)
-btnGenerateS3_Callback(handles)
-btnGenerateS4_Callback(handles)
-btnGenerateS5_Callback(handles)
+GenerateS2(handles)
+GenerateS3(handles)
+GenerateS4(handles)
+GenerateS5(handles)
 
 hh = generateFilter(Ft1, Ft2, N, Fs,filterType);
 
-btnSpectruSemnalNefiltrat_Callback([], [], handles)
-btnCaracteristici_Callback([], [], handles)
-btnSpectruSemnalFiltrat_Callback([], [], handles)
-btnSemnalFiltratTimp_Callback([], [], handles)
+AfiseazaSpectruSemnalNefiltrat(handles)
+AfiseazaCaracteristici(handles)
+AfiseazaSpectruSemnalFiltrat(handles)
+AfiseazaSemnalFiltratInTimp(handles)
 
 % --- Outputs from this function are returned to the command line.
 function varargout = dsp_filtering_OutputFcn(hObject, eventdata, handles)
@@ -173,6 +174,7 @@ function student_info_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 h = msgbox({'Grupa 242/2:', 'Cozma Alexandru', 'Raulea Mihaela'}');
+
 
 % --- Executes on slider movement.
 function slider_F1_Callback(hObject, eventdata, handles)
@@ -264,6 +266,7 @@ F4 = get(handles.slider_F4,'Value');
 set(handles.F4,'String',F4);
 UpdateUI(handles)
 
+
 % --- Executes during object creation, after setting all properties.
 function slider_F4_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to slider_F4 (see GCBO)
@@ -284,16 +287,9 @@ function edit_A1_Callback(hObject, eventdata, handles)
 % Hints: get(hObject,'String') returns contents of edit_A1 as text
 %        str2double(get(hObject,'String')) returns contents of edit_A1 as a double
 
-global maxA
-global minA
 global A1
 A1 = str2double(get(handles.edit_A1, 'String'));
-
-if (A1 > maxA) || (A1 < minA)
-    msgbox('Please add a value between 0 and 3.');
-else
-    UpdateUI(handles)
-end
+CompareToMinMax(A1,handles)
 
 
 % --- Executes during object creation, after setting all properties.
@@ -308,8 +304,6 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-
-
 function edit_A2_Callback(hObject, eventdata, handles)
 % hObject    handle to edit_A2 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -318,16 +312,9 @@ function edit_A2_Callback(hObject, eventdata, handles)
 % Hints: get(hObject,'String') returns contents of edit_A2 as text
 %        str2double(get(hObject,'String')) returns contents of edit_A2 as a double
 
-global maxA
-global minA
 global A2
 A2 = str2double(get(handles.edit_A2, 'String'));
-
-if (A2 > maxA) || (A2 < minA)
-    msgbox('Please add a value between 0 and 3.');
-else
-    UpdateUI(handles)
-end
+CompareToMinMax(A2,handles)
 
 % --- Executes during object creation, after setting all properties.
 function edit_A2_CreateFcn(hObject, eventdata, handles)
@@ -350,17 +337,9 @@ function edit_A3_Callback(hObject, eventdata, handles)
 
 % Hints: get(hObject,'String') returns contents of edit_A3 as text
 %        str2double(get(hObject,'String')) returns contents of edit_A3 as a double
-
-global maxA
-global minA
 global A3
 A3 = str2double(get(handles.edit_A3, 'String'));
-
-if (A3 > maxA) || (A3 < minA)
-    msgbox('Please add a value between 0 and 3.');
-else
-    UpdateUI(handles)
-end
+CompareToMinMax(A3,handles)
 
 % --- Executes during object creation, after setting all properties.
 function edit_A3_CreateFcn(hObject, eventdata, handles)
@@ -382,16 +361,9 @@ function edit_A4_Callback(hObject, eventdata, handles)
 % Hints: get(hObject,'String') returns contents of edit_A4 as text
 %        str2double(get(hObject,'String')) returns contents of edit_A4 as a double
 
-global maxA
-global minA
 global A4
 A4 = str2double(get(handles.edit_A4, 'String'));
-
-if (A4 > maxA) || (A4 < minA)
-    msgbox('Please add a value between 0 and 3.');
-else
-    UpdateUI(handles)
-end
+CompareToMinMax(A4,handles)
 
 % --- Executes during object creation, after setting all properties.
 function edit_A4_CreateFcn(hObject, eventdata, handles)
@@ -403,6 +375,16 @@ function edit_A4_CreateFcn(hObject, eventdata, handles)
 %       See ISPC and COMPUTER.
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
+end
+
+function CompareToMinMax(A,handles)
+global maxA
+global minA
+
+if (A > maxA) || (A < minA)
+    msgbox('Please add a value between 0 and 3.');
+else
+    UpdateUI(handles)
 end
 
 function GenerateS1(handles)
@@ -422,7 +404,7 @@ xlabel('timp[s]');
 zoom on;
 s1 = s;
 
-function btnGenerateS2_Callback(handles)
+function GenerateS2(handles)
 
 global fi0
 global durata
@@ -439,7 +421,7 @@ xlabel('timp[s]');
 zoom on;
 s2 = s;
 
-function btnGenerateS3_Callback(handles)
+function GenerateS3(handles)
 
 global durata
 global Fs
@@ -455,7 +437,7 @@ xlabel('timp[s]');
 zoom on;
 s3 = s;
 
-function btnGenerateS4_Callback(handles)
+function GenerateS4(handles)
 
 global durata
 global Fs
@@ -471,7 +453,7 @@ xlabel('timp[s]');
 zoom on;
 s4 = s;
 
-function btnGenerateS5_Callback(handles)
+function GenerateS5(handles)
 
 global durata
 global Fs
@@ -607,12 +589,7 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-
-% --- Executes on button press in btnSpectruSemnalNefiltrat.
-function btnSpectruSemnalNefiltrat_Callback(hObject, eventdata, handles)
-% hObject    handle to btnSpectruSemnalNefiltrat (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+function AfiseazaSpectruSemnalNefiltrat(handles)
 
 global Semnal_1
 global Fs
@@ -623,11 +600,7 @@ axes(handles.spectru_semnal_1_nefiltrat_axes);
 displayGraph(axaFFT, S, 'Spectru semnal nefiltrat', 0, 0);
 zoom on;
 
-% --- Executes on button press in btnSpectruSemnalFiltrat.
-function btnSpectruSemnalFiltrat_Callback(hObject, eventdata, handles)
-% hObject    handle to btnSpectruSemnalFiltrat (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+function AfiseazaSpectruSemnalFiltrat(handles)
 
 global Semnal_1
 global hh
@@ -641,13 +614,8 @@ axes(handles.spectru_semnal_1_filtrat_axes);
 displayGraph(axaFFTS_filtrat, Spectru_filtrat, 'Spectru semnal filtrat', 0, 0);
 zoom on;
 
-% --- Executes on button press in btnSemnalFiltratTimp.
-function btnSemnalFiltratTimp_Callback(hObject, eventdata, handles)
-% hObject    handle to btnSemnalFiltratTimp (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+function AfiseazaSemnalFiltratInTimp( handles)
 
-%TO DO NEXT
 global S_filtrat
 global Fs
 global durata
@@ -659,12 +627,7 @@ plot(S_filtrat);
 title('Semnal filtrat');
 zoom on;
 
-% --- Executes on button press in btnCaracteristici.
-function btnCaracteristici_Callback(hObject, eventdata, handles)
-% hObject    handle to btnCaracteristici (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
+function AfiseazaCaracteristici(handles)
 
 global Fs
 global hh
@@ -673,7 +636,6 @@ global Ft1
 global Ft2
 
 cla(handles.caracteristica_amplitudine_filtru_axes);
-
 axes(handles.caracteristica_amplitudine_filtru_axes);
 generateCharacteristics( hh, Fs, filterType, Ft1, Ft2);
 zoom on;
