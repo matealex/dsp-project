@@ -90,6 +90,8 @@ function btnOpenSemnalAudio1_Callback(hObject, eventdata, handles)
     [wav, Fs] = wavread(semnal1);
     axes(handles.semnal_audio_1_axes);
     plot(wav);
+    xlabel('timp[s]');
+    ylabel('amplitudine');
     zoom xon;
     hh = generateFOB(500,1300,4001,Fs);
     
@@ -110,6 +112,8 @@ function btnOpenSemnalAudio2_Callback(hObject, eventdata, handles)
     [wav, Fs] = wavread(semnal2);
     axes(handles.semnal_audio_1_axes);
     plot(wav);
+    xlabel('timp[s]');
+    ylabel('amplitudine');
     zoom xon;
     hh = generateFTS(1200,4001,Fs);
     

@@ -42,6 +42,8 @@ function generateCharacteristics( h, Fs, filterType, Ft1, Ft2)
     plot(axaFFTHreal, Hreal, 'r');
 
     title('Caracteristica ideala si reala')
+    xlabel('frecventa [Hz]')
+    ylabel('amplitudine');
     hold off
 
 end

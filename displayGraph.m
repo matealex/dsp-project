@@ -5,7 +5,7 @@ function displayGraph(x, y, durata, titleText, limitA, maxA)
         axis([0, 1/20*durata, -(maxA+1), (maxA+1)]);
     end            
 
-    xlabel('frecventa')
+    xlabel('frecventa [Hz]')
     ylabel('amplitudine');
     title(titleText);
     
