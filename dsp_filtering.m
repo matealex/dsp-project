@@ -483,7 +483,7 @@ Semnal_1 = s1 + s2 + s3 + s4;
 t = 0:1/Fs:durata;
 
 axes(handles.semnal_1_axes);
-displayGraph(t, Semnal_1, durata, 'Suma: Semnal_1', 1, maxA);
+displayGraph(t, Semnal_1, durata, 'Semnal_1', 1, maxA);
 xlabel('timp[s]');
 zoom on;
 
@@ -640,13 +640,18 @@ function AfiseazaSemnalFiltratInTimp( handles)
 
 global S_filtrat
 global Fs
-global durata
-t = 0:1/Fs:durata;
+global maxA
+
+durata = 1/Fs * (length(S_filtrat)-1);
+
+t = 0:1/Fs: durata;
 axes(handles.semnal_filtrat_timp_axes);
-xlabel('timp [s]');
 cla;
-plot(S_filtrat);
+plot(t,S_filtrat);
+axis([0, durata, -(maxA+1), (maxA+1)]);
 title('Semnal filtrat');
+xlabel('timp [s]');
+ylabel('amplitudine');
 zoom on;
 
 
