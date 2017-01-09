@@ -64,6 +64,7 @@ guidata(hObject, handles);
 
     global semnal1;
     semnal1 = 'semnal1.wav';
+    
     global semnal2;
     semnal2 = 'semnal2.wav';
 
@@ -83,47 +84,31 @@ function btnOpenSemnalAudio1_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
     global semnal1;
-    global wav;
-    global Fs;
-    global hh
+    global wav1;
+    global Fs1;
         
-    [wav, Fs] = wavread(semnal1);
+    [wav1, Fs1] = wavread(semnal1);
     axes(handles.semnal_audio_1_axes);
-    plot(wav);
+    plot(wav1);
     zoom xon;
-    hh = generateFOB(500,1400,4001,Fs);
-    
-% --- Executes on button press in btnOpenSemnalAudio2.
-function btnOpenSemnalAudio2_Callback(hObject, eventdata, handles)
-% hObject    handle to btnOpenSemnalAudio2 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-    global semnal2;
-    global wav;
-    global Fs;
-    global hh;
-        
-    [wav, Fs] = wavread(semnal2);
-    axes(handles.semnal_audio_1_axes);
-    plot(wav);
-    zoom xon;
-    hh = generateFTS(820,2001,Fs);
 
 % --- Executes on button press in btnSpectruSemnal1Nefiltrat.
 function btnSpectruSemnal1Nefiltrat_Callback(hObject, eventdata, handles)
 % hObject    handle to btnSpectruSemnal1Nefiltrat (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-    global wav
-    global Fs
-    
-    S = fftshift(abs(fft(wav)));
-    axaFFT = linspace(-Fs/2, Fs/2, length(wav));
+    global wav1
+    global Fs1
+    global hh
+
+    S = fftshift(abs(fft(wav1)));
+    axaFFT = linspace(-Fs1/2, Fs1/2, length(wav1));
     
     axes(handles.spectru_semnal_audio_1_nefiltrat_axes);
     displayGraph(axaFFT, S, 'Spectru semnal audio 1 nefiltrat', 0, 0);
     zoom xon;
+    
+    hh = generateFOB(500,1400,4001,Fs1);
 
 
 % --- Executes on button press in btnSpectruSemnal1Filtrat.
@@ -132,19 +117,20 @@ function btnSpectruSemnal1Filtrat_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-    global Fs;
-    global fwav;
-    global wav;
-    global hh;
 
-    fwav = conv(wav,hh);
+global Fs;
+global fwav;
+global wav;
+hh = generateFOB(500,1400,4001,Fs);
+fwav = conv(wav,hh);
 
-    fswav = fftshift(abs(fft(fwav)));
-    ax = linspace(-Fs/2 , Fs/2, length(fswav));
+fswav = fftshift(abs(fft(fwav)));
+ax = linspace(-Fs1/2 , Fs1/2, length(fswav));
 
-    axes(handles.spectru_semnal_audio_1_filtrat_axes);
-    displayGraph(ax, fswav, 'Spectru semnal audio 1 filtrat', 0, 0);
-    zoom xon;
+% put on axes
+axes(handles.spectru_semnal_audio_1_filtrat_axes);
+displayGraph(ax, fswav, 'Spectru semnal audio 1 filtrat', 0, 0);
+zoom xon;
 
 % --- Executes on button press in btnRedareSemnal1Original.
 function btnRedareSemnal1Original_Callback(hObject, eventdata, handles)
@@ -153,6 +139,7 @@ function btnRedareSemnal1Original_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
     global wav;
     global Fs;
+    
     sound(wav, Fs);
 
 % --- Executes on button press in btnRedareSemnal1Filtrat.
@@ -161,9 +148,9 @@ function btnRedareSemnal1Filtrat_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-    global Fs;
-    global fwav;
-    sound(fwav,Fs);
+global Fs;
+global fwav;
+sound(fwav,Fs);
 
 % --- Executes on button press in btnSinus.
 function btnSinus_Callback(hObject, eventdata, handles)
@@ -171,3 +158,21 @@ function btnSinus_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
     dsp_filtering
+
+% --- Executes on button press in btnOpenSemnalAudio2.
+function btnOpenSemnalAudio2_Callback(hObject, eventdata, handles)
+% hObject    handle to btnOpenSemnalAudio2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+    global hh;
+    global semnal2;
+    global wav;
+    global Fs;
+        
+    [wav, Fs] = wavread(semnal2);
+    axes(handles.semnal_audio_1_axes);
+    plot(wav);
+    zoom xon;
+    
+    hh = generateFTS(820,2001,Fs);
