@@ -648,7 +648,7 @@ t = 0:1/Fs: durata;
 axes(handles.semnal_filtrat_timp_axes);
 cla;
 plot(t,S_filtrat);
-axis([0, durata, -(maxA+1), (maxA+1)]);
+axis([1/20*durata, 2/20*durata, -(maxA+1), (maxA+1)]);
 title('Semnal filtrat');
 xlabel('timp [s]');
 ylabel('amplitudine');
